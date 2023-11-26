@@ -1,0 +1,8 @@
+# Cargo
+/target
+# Nix
+/result
+# Direnv
+/.direnv
+# CLion
+/.idea

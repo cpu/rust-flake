@@ -1,0 +1,17 @@
+[package]
+name = "example"
+description = "A Nix Flake example for a program with native dependencies"
+version = "0.1.0"
+license = "MIT"
+edition = "2021"
+
+# MSRV
+rust-version = "1.65.0"
+
+[features]
+default = []
+foobar = []
+
+[dependencies]
+# Building tts on Linux requires pkg-config and speechd on Linux
+tts = "0.25.6"

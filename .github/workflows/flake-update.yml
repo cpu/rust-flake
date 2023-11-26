@@ -1,0 +1,17 @@
+name: "Flake Update"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 7 * * 1' # Weekly, 7am Monday
+
+jobs:
+  lockfile:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: "Update flake.lock"

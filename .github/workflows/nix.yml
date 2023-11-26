@@ -1,0 +1,94 @@
+name: "Nix"
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  format:
+    name: "Format"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v4
+      - name: "Cargo fmt"
+        run: |-
+          nix develop --command cargo fmt
+
+  clippy:
+    name: "Clippy"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v4
+      - name: "Cargo clippy"
+        run: |-
+          nix develop --command cargo clippy
+
+  test-nightly:
+    name: "Test (Nightly)"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v4
+      - name: "Cargo test"
+        run: |-
+          nix develop '.#nightly' --command cargo test
+
+  test-stable:
+    name: "Test (Stable)"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v4
+      - name: "Cargo test"
+        run: |-
+          nix develop '.#stable' --command cargo test
+
+  test-msrv:
+    name: "Test (MSRV)"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v4
+      - name: "Cargo test"
+        run: |-
+          nix develop '.#msrv' --command cargo test
+
+  flake-check:
+    name: "Flake Check"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v4
+      - name: "Flake check"
+        run: |-
+          nix flake check
+
+  package:
+    name: "Package"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v4
+      - name: "Nix build"
+        run: |-
+          nix build
+
+  package-base:
+    name: "Package (base)"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v4
+      - name: "Nix build (base)"
+        run: |-
+          nix build '.#example-base'
