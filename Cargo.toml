@@ -14,4 +14,4 @@ foobar = []
 
 [dependencies]
 # Building tts on Linux requires pkg-config and speechd on Linux
-tts = "0.26.0"
+tts = "0.26.1"
