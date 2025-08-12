@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: "Cargo fmt"
         run: |-
           nix develop --command cargo fmt
@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: "Cargo clippy"
         run: |-
           nix develop --command cargo clippy
@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: "Cargo test"
         run: |-
           nix develop '.#nightly' --command cargo test
@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: "Cargo test"
         run: |-
           nix develop '.#stable' --command cargo test
@@ -55,7 +55,7 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: "Cargo test"
         run: |-
           nix develop '.#msrv' --command cargo test
@@ -66,7 +66,7 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: "Flake check"
         run: |-
           nix flake check
@@ -77,7 +77,7 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: "Nix build"
         run: |-
           nix build
@@ -88,7 +88,7 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: "Nix build (base)"
         run: |-
           nix build '.#example-base'
